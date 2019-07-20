@@ -1,0 +1,11 @@
+{
+  "name": "senum",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "Sergey Suslov",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "koa": "^2.7.0"
+  }
+}
