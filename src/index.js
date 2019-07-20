@@ -5,6 +5,7 @@ import logger from './logger'
 import db from './db'
 import errorHandler from './middlewares/error-handler'
 import logRequest from './middlewares/log-request'
+import routes from './routes'
 
 const app = new Koa()
 app.context.log = logger
@@ -20,5 +21,6 @@ app.use(session(CONFIG, app))
 app.use(koaBody({ multipart: true }))
 app.use(errorHandler)
 app.use(logRequest)
+app.use(routes.routes(), routes.allowedMethods())
 
 app.listen(3000)

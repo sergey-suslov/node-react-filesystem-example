@@ -4,7 +4,6 @@ export default async(ctx, next) => {
   try {
     await next()
   } catch (err) {
-    console.log('err', err)
     if (err) {
       if (err.isBoom) {
         ctx.status = err.output.statusCode
