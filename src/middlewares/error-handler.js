@@ -4,14 +4,18 @@ export default async(ctx, next) => {
   try {
     await next()
   } catch (err) {
+    console.log('err', err)
     if (err) {
       if (err.isBoom) {
         ctx.status = err.output.statusCode
         ctx.set({
           ...ctx.response.headers,
-          ...err.output.headers,
+          ...err.output.headers
         })
-        ctx.body = err.output.payload
+        ctx.body = {
+          ...err.output.payload,
+          data: err.data
+        }
       } else {
         ctx.status = err.status || 500
         ctx.body = Boom.boomify(err, { statusCode: err.status, message: err.message })
