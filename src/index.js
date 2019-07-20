@@ -1,6 +1,7 @@
 import Koa from 'koa'
 import koaBody from 'koa-body'
 import session from 'koa-session'
+import Boom from 'boom'
 import logger from './logger'
 import db from './db'
 import errorHandler from './middlewares/error-handler'
@@ -22,5 +23,6 @@ app.use(koaBody({ multipart: true }))
 app.use(errorHandler)
 app.use(logRequest)
 app.use(routes.routes(), routes.allowedMethods())
+app.on('error', () => {})
 
 app.listen(3000)

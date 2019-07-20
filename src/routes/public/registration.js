@@ -6,7 +6,6 @@ const validateRegistration = async(ctx, next) => {
     email: Joi.string().email().max(250).required(),
     password: Joi.string().min(4).max(250).required()
   })
-
   if (Joi.validate({ email: ctx.request.body.email, password: ctx.request.body.password }, schema).error !== null) {
     throw Boom.badRequest('Invalid body!')
   }
