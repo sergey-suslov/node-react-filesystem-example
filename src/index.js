@@ -2,11 +2,13 @@ import Koa from 'koa'
 import koaBody from 'koa-body'
 import session from 'koa-session'
 import logger from './logger'
+import db from './db'
 import errorHandler from './middlewares/error-handler'
 import logRequest from './middlewares/log-request'
 
 const app = new Koa()
 app.context.log = logger
+app.context.db = db
 
 app.keys = [process.env.SESSION_SECRET]
 

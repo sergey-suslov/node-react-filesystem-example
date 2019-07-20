@@ -1,5 +1,10 @@
 {
   "log": {
     "level": "trace"
+  },
+  "db": {
+    "name": "senum",
+    "userName": "user",
+    "userPassword": "password"
   }
 }
