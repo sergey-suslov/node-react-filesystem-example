@@ -17,14 +17,21 @@ const validateSignIn = async(ctx, next) => {
 
 const signIn = async ctx => {
   const User = ctx.db.model('User')
+  const Session = ctx.db.model('Session')
   const user = await User.getByEmailAndPassword(ctx.request.body.email, ctx.request.body.password)
+  const session = await Session.createSessionForUser(user._id)
   const token = jsonwebtoken.sign({
     ..._.pick(user, ['_id', 'email']),
     created: new Date(),
+    sid: session.sid,
     lifetime: config.jwt.lifetime
   }, process.env.JWT_SECRET || config.jwt.secret)
+  const refreshToken = jsonwebtoken.sign({
+    sid: session.sid,
+    expire: session.expire
+  }, process.env.JWT_SECRET || config.jwt.secret)
   ctx.cookies.set('token', token, { signed: true })
-  ctx.body = ''
+  ctx.body = refreshToken
 }
 
 export default {

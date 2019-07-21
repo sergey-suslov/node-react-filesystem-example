@@ -19,3 +19,5 @@ export const compareHashes = (income, hash, salt) => {
   const hashResult = crypto.pbkdf2Sync(income, salt, 12000, config.crypto.hash.length, 'sha256').toString('base64')
   return hash === hashResult
 }
+
+export const generateSid = () => crypto.randomBytes(config.crypto.hash.length).toString('base64')
