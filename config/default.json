@@ -3,9 +3,13 @@
     "level": "trace"
   },
   "crypto": {
-  "hash": {
-    "length": 128
-  }
+    "hash": {
+      "length": 128
+    }
+  },
+  "jwt": {
+    "secret": "60ecf8bdc557c873c968a2ae512e2e0e82a160796dfaafce8001b8ae3b459190",
+    "lifetime": 86400000
   },
   "db": {
     "name": "senum",

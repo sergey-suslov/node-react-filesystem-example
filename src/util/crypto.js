@@ -15,4 +15,7 @@ export const generateHash = string => {
   return null
 }
 
-export const compareHashes = (a, b) => {}
+export const compareHashes = (income, hash, salt) => {
+  const hashResult = crypto.pbkdf2Sync(income, salt, 12000, config.crypto.hash.length, 'sha256').toString('base64')
+  return hash === hashResult
+}

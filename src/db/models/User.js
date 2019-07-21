@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import { generateHash } from '../../util/crypto'
+import { generateHash, compareHashes } from '../../util/crypto'
 
 const schema = new mongoose.Schema({
   email: { type: String, required: true },
@@ -19,6 +19,12 @@ schema.statics.registerByEmail = async function(email, password) {
     salt
   })
   return user
+}
+
+schema.statics.getByEmailAndPassword = async function(email, password) {
+  const user = await this.findOne({ email })
+  const isPasswordValid = compareHashes(password, user.hash, user.salt)
+  return isPasswordValid ? user : null
 }
 
 const User = mongoose.model('User', schema)

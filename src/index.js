@@ -1,7 +1,8 @@
 import Koa from 'koa'
 import koaBody from 'koa-body'
 import session from 'koa-session'
-import Boom from 'boom'
+import koaJWT from 'koa-jwt'
+import config from 'config'
 import logger from './logger'
 import db from './db'
 import errorHandler from './middlewares/error-handler'
@@ -21,6 +22,11 @@ const CONFIG = {
 app.use(session(CONFIG, app))
 app.use(koaBody({ multipart: true }))
 app.use(errorHandler)
+app.use(koaJWT({
+  secret: process.env.JWT_SECRET || config.jwt.secret,
+  getToken: ctx => ctx.cookies.get('token'),
+  isRevoked: async(ctx, decodedToken) => new Date(new Date(decodedToken.created).getTime() + decodedToken.lifetime) < new Date()
+}).unless({ path: [/^\/public/] }))
 app.use(logRequest)
 app.use(routes.routes(), routes.allowedMethods())
 app.on('error', () => {})
