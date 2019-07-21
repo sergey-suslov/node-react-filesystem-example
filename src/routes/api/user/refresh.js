@@ -2,7 +2,6 @@ import config from 'config'
 import Boom from 'boom'
 import util from 'util'
 import Joi from 'joi'
-import _ from 'lodash'
 import jsonwebtoken from 'jsonwebtoken'
 
 const validateRefresh = async(ctx, next) => {
