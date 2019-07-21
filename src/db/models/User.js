@@ -17,7 +17,7 @@ schema.statics.registerByEmail = async function(email, password) {
     email,
     hash,
     salt
-  }).exec()
+  })
   return user
 }
 

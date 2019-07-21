@@ -1,6 +1,8 @@
 import config from 'config'
+import crypto from 'crypto'
 
-const generateHash = string => {
+// export const generateHash = string => {
+export const generateHash = string => {
   const salt = crypto.randomBytes(config.crypto.hash.length).toString('base64')
 
   if (string) {
@@ -13,9 +15,4 @@ const generateHash = string => {
   return null
 }
 
-const compareHashes = (a, b) => {}
-
-export default {
-  generateHash,
-  compareHashes
-}
+export const compareHashes = (a, b) => {}

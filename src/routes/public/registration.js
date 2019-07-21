@@ -14,8 +14,8 @@ const validateRegistration = async(ctx, next) => {
 
 const register = async ctx => {
   const User = ctx.db.model('User')
-  const newUser = await User.registerByEmail(ctx.body.email, ctx.body.password)
-  ctx.log.info(newUser)
+  const newUser = await User.registerByEmail(ctx.request.body.email, ctx.request.body.password)
+  ctx.body = newUser._id
 }
 
 export default {
