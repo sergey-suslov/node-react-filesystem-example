@@ -1,7 +1,7 @@
 import Boom from 'boom'
 import Joi from 'joi'
 
-const validateRegistration = async(ctx, next) => {
+const validateSignUp = async(ctx, next) => {
   const schema = Joi.object().keys({
     email: Joi.string().email().max(250).required(),
     password: Joi.string().min(4).max(250).required()
@@ -12,13 +12,13 @@ const validateRegistration = async(ctx, next) => {
   await next()
 }
 
-const register = async ctx => {
+const signUp = async ctx => {
   const User = ctx.db.model('User')
   const newUser = await User.registerByEmail(ctx.request.body.email, ctx.request.body.password)
   ctx.body = newUser._id
 }
 
 export default {
-  validateRegistration,
-  register
+  validateSignUp,
+  signUp
 }

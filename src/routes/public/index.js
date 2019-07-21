@@ -1,9 +1,11 @@
 import Router from 'koa-router'
-import registration from './registration'
+import signup from './signup'
+import signin from './signin'
 
 const router = new Router()
 router.prefix('/public')
 
-router.post('/register/email', registration.validateRegistration, registration.register)
+router.post('/signup/email', signup.validateSignUp, signup.signUp)
+router.post('/signin/email', signin.validateSignIn, signin.signIn)
 
 export default router
