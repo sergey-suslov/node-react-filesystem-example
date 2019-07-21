@@ -1,8 +1,9 @@
 import mongoose from 'mongoose'
+import Boom from 'boom'
 import { generateHash, compareHashes } from '../../util/crypto'
 
 const schema = new mongoose.Schema({
-  email: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
   phone: { type: String, required: false },
   hash: { type: String, required: true },
   salt: { type: String, required: true },
@@ -26,6 +27,18 @@ schema.statics.getByEmailAndPassword = async function(email, password) {
   const isPasswordValid = compareHashes(password, user.hash, user.salt)
   return isPasswordValid ? user : null
 }
+
+schema.post('save', (error, doc, next) => {
+  if (error.name === 'MongoError' && error.code === 11000) {
+    next(Boom.badRequest('User with given email already exists', {
+      duplicate: ['email']
+    }))
+  } else {
+    next()
+  }
+})
+
+schema.index({ email: 1 })
 
 const User = mongoose.model('User', schema)
 export default User
