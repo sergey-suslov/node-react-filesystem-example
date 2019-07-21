@@ -23,7 +23,9 @@ app.use(session(CONFIG, app))
 app.use(koaBody({ multipart: true }))
 app.use(errorHandler)
 app.use(koaJWT({
-  secret: process.env.JWT_SECRET || config.jwt.secret
+  secret: process.env.JWT_SECRET || config.jwt.secret,
+  getToken: ctx => ctx.cookies.get('token'),
+  isRevoked: async(ctx, decodedToken) => new Date(new Date(decodedToken.created).getTime() + decodedToken.lifetime) < new Date()
 }).unless({ path: [/^\/public/] }))
 app.use(logRequest)
 app.use(routes.routes(), routes.allowedMethods())
