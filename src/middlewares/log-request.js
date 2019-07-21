@@ -1,4 +1,4 @@
-export default (ctx, next) => {
+export default async(ctx, next) => {
   ctx.log.trace(`[${ctx.method}] - ${ctx.url}`)
-  next()
+  await next()
 }

@@ -1,5 +1,15 @@
 {
   "log": {
     "level": "trace"
+  },
+  "crypto": {
+  "hash": {
+    "length": 128
+  }
+  },
+  "db": {
+    "name": "senum",
+    "userName": "user",
+    "userPassword": "password"
   }
 }

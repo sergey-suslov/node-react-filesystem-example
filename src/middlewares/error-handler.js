@@ -4,7 +4,6 @@ export default async(ctx, next) => {
   try {
     await next()
   } catch (err) {
-    console.log('err', err)
     if (err) {
       if (err.isBoom) {
         ctx.status = err.output.statusCode
@@ -17,6 +16,7 @@ export default async(ctx, next) => {
           data: err.data
         }
       } else {
+        ctx.log.error(err)
         ctx.status = err.status || 500
         ctx.body = Boom.boomify(err, { statusCode: err.status, message: err.message })
           .output
@@ -25,6 +25,7 @@ export default async(ctx, next) => {
       ctx.app.emit('error', err, ctx)
       return
     }
+    ctx.log.error(err)
     const { output: internalErrorOutput } = Boom.internal('Something went wrong')
     ctx.status = internalErrorOutput.statusCode
     ctx.body = internalErrorOutput.payload
