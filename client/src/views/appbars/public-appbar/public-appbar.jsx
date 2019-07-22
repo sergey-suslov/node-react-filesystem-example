@@ -14,29 +14,29 @@ export default class PublicAppbar extends Component {
     return (
       <div>
         <Row className="public-appbar" justify="space-between">
-          <Col span={2}>
+          <Col xs={24} md={2}>
             <Typography.Title level={3}>
               Senum
             </Typography.Title>
           </Col>
-          <Col span={22}>
-            <Row gutter={40} justify="end" type="flex">
-              <Col>
+          <Col xs={24} md={22}>
+            <Row gutter={40}>
+              <Col md={{span: 3, offset: 12}} lg={{span: 2, offset: 16}}>
                 <LinkButton>
                   Home
                 </LinkButton>
               </Col>
-              <Col>
+              <Col md={3} lg={2}>
                 <LinkButton>
                   Pricing
                 </LinkButton>
               </Col>
-              <Col>
+              <Col md={3} lg={2}>
                 <LinkButton>
                   About
                 </LinkButton>
               </Col>
-              <Col>
+              <Col md={3} lg={2}>
                 <DefaultButton>
                   Sign in
                 </DefaultButton>
