@@ -1,1 +1,14 @@
 @main-font: 'Open Sans', 'OpenSans', Tahoma, 'Helvetica Neue', @font-family;
+@secondary-font: 'PT Sans', 'Open Sans', Tahoma, 'Helvetica Neue', @font-family;
+.ant-input {
+  border: 0;
+  border-bottom: 1px solid #000;
+  min-height: 100%;
+  border-radius: 0;
+  box-shadow: none;
+  &:focus {
+    border: 0;
+    border-bottom: 1px solid @primary-color;
+    box-shadow: none;
+  }
+}

@@ -39,6 +39,48 @@
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
-  font-weight: 400;
+  font-weight: lighter;
+  src: url('../assets/fonts/open-sans/OpenSans-Light.ttf'); /* IE9 Compat Modes */
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: normal;
   src: url('../assets/fonts/open-sans/OpenSans-Regular.ttf'); /* IE9 Compat Modes */
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: bold;
+  src: url('../assets/fonts/open-sans/OpenSans-Bold.ttf'); /* IE9 Compat Modes */
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../assets/fonts/open-sans/OpenSans-SemiBold.ttf'); /* IE9 Compat Modes */
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../assets/fonts/open-sans/OpenSans-ExtraBold.ttf'); /* IE9 Compat Modes */
+}
+
+@font-face {
+  font-family: 'PT Sans';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../assets/fonts/pt-sans/PTSans-Regular.ttf'); /* IE9 Compat Modes */
+}
+
+@font-face {
+  font-family: 'PT Sans';
+  font-style: normal;
+  font-weight: bold;
+  src: url('../assets/fonts/pt-sans/PTSans-Bold.ttf'); /* IE9 Compat Modes */
 }
