@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Row, Col, Typography, Form } from 'antd'
+import { Row, Col, Typography, Form, Spin } from 'antd'
 import LinkButton from './../../../widgets/buttons/link-button'
 import DefaultInput from '../../../widgets/inputs/default-input'
 import PasswordInput from '../../../widgets/inputs/password-input'
@@ -13,9 +13,11 @@ class SignUpForm extends Component {
   handleSubmit = e => {
     e.preventDefault()
     this.props.form.validateFields((err, values) => {
-      console.log('submit', err)
       if (!err) {
-        console.log('Received values of form: ', values)
+        this.props.signUp({
+          email: values.email,
+          password: values.password
+        })
       }
     })
   }
@@ -30,7 +32,7 @@ class SignUpForm extends Component {
   };
 
   render() {
-    const { history } = this.props
+    const { history, isSigningUp } = this.props
     const { handleSubmit, compareToFirstPassword } = this
     const { getFieldDecorator } = this.props.form
     const goTo = path => () => {history.push(path)}
@@ -65,9 +67,11 @@ class SignUpForm extends Component {
           })(<PasswordInput placeholder="Confirm Password" />)}
         </Form.Item>
         <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
-          <DefaultButton type="primary" htmlType="submit">
-            Sign Up
-          </DefaultButton>
+          <Spin spinning={isSigningUp}>
+            <DefaultButton type="primary" htmlType="submit">
+              Sign Up
+            </DefaultButton>
+          </Spin>
         </Form.Item>
         <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
           <LinkButton shape="circle" icon="google" style={{ fontSize: 24 }} />
