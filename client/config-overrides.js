@@ -15,7 +15,7 @@ module.exports = override(
        '@link-color': '#161211',
        '@success-color': '#6E9B8E',
        '@warning-color': '#faad14',
-       '@error-color': '#f5222d',
+       '@error-color': '#F38C7F',
        '@font-size-base': '14px',
        '@heading-color': 'rgba(0, 0, 0, 0.9)',
        '@text-color': 'rgba(0, 0, 0, 0.9)',
