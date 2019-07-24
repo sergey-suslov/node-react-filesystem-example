@@ -1,4 +1,5 @@
 import { message } from 'antd'
+import { push } from 'react-router-redux'
 import { takeLatest, call, put } from 'redux-saga/effects'
 import axios from './axios'
 import { SIGN_IN, SIGN_UP, signedUp, signedUpWithError } from '../actions/user-actions'
@@ -9,7 +10,8 @@ function* signUp({ payload: {email, password} }) {
       email,
       password
     })
-    call(signedUp())
+    yield put(signedUp())
+    yield put(push('/sign-up-result'))
   } catch(error) {
     if (error.response) {
       const {
