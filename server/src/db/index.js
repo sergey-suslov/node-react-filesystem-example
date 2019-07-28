@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 import config from 'config'
 import './models/User'
+import './models/UserRegistration'
 import './models/Session'
 
 mongoose.connect(`mongodb://localhost:27017/${process.env.DB_NAME || config.db.name}`, {

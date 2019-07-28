@@ -19,6 +19,7 @@ const signIn = async ctx => {
   const User = ctx.db.model('User')
   const Session = ctx.db.model('Session')
   const user = await User.getByEmailAndPassword(ctx.request.body.email, ctx.request.body.password)
+  if (!user) throw Boom.badRequest('Wrong email or password')
   const session = await Session.createSessionForUser(user._id)
   const token = jsonwebtoken.sign({
     ..._.pick(user, ['_id', 'email']),
