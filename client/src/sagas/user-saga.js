@@ -2,7 +2,12 @@ import { message } from 'antd'
 import { push } from 'react-router-redux'
 import { takeLatest, call, put } from 'redux-saga/effects'
 import axios from './axios'
-import { SIGN_IN, SIGN_UP, signedUp, signedUpWithError } from '../actions/user-actions'
+import { SIGN_IN,
+  SIGN_UP,
+  signedUp,
+  signedUpWithError,
+  SIGN_UP_CONFIRM
+ } from '../actions/user-actions'
 
 function* signUp({ payload: {email, password} }) {
   try {
@@ -33,6 +38,29 @@ function* signUp({ payload: {email, password} }) {
     console.log(error.config);
   }
 }
+
+function* signUpConfirm({ payload: {hash} }) {
+  try {
+    yield call(axios.post, '/public/signup/email/confirm', {
+      confirmHash: hash
+    })
+    message.success('Account confirmed')
+    yield put(push('/sign-in'))
+  } catch(error) {
+    if (error.response) {
+      const {
+        message
+      } = error.response.data
+      message.error(message)
+      yield put(push('/sign-in'))
+    } else if (error.request) {
+      yield put(push('/500'))
+    } else {
+      console.log('Error', error.message);
+    }
+  }
+}
+
 function signIn({ payload }) {
   // TODO: implement signin
 }
@@ -43,4 +71,8 @@ export function * watchSignIn() {
 
 export function * watchSignUp() {
   yield takeLatest(SIGN_UP, signUp)
+}
+
+export function * watchSignUpConfirm() {
+  yield takeLatest(SIGN_UP_CONFIRM, signUpConfirm)
 }

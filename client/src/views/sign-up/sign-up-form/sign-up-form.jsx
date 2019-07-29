@@ -55,13 +55,13 @@ class SignUpForm extends Component {
         </Form.Item>
         <Form.Item>
           {getFieldDecorator('password', {
-            rules: [{ required: true, message: 'Please input your password', whitespace: true }],
+            rules: [{ required: true, min: 4, message: 'Please input your password', whitespace: true }],
           })(<PasswordInput placeholder="Password" />)}
         </Form.Item>
         <Form.Item>
           {getFieldDecorator('confirmPassword', {
             rules: [
-              { required: true, message: 'Please confirm your password', whitespace: true },
+              { required: true, min: 4, message: 'Please confirm your password', whitespace: true },
               { validator: compareToFirstPassword, message: 'Passwords must match' },
             ],
           })(<PasswordInput placeholder="Confirm Password" />)}
