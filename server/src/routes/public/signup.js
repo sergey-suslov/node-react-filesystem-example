@@ -31,7 +31,6 @@ const signUp = async ctx => {
 
 const confirmRegistration = async ctx => {
   const { confirmHash } = ctx.request.body
-  console.log('asd', ctx.request.body);
   const userRegistration = await ctx.db.model('UserRegistration').findOne({ confirmHash })
   if (!userRegistration) {
     throw Boom.badRequest('Invalid link')
