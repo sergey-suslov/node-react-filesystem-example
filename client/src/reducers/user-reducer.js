@@ -36,6 +36,7 @@ export default function reducer(state = new ReducerRecord(), action) {
     case SET_USER_SIGNED_IN:
       return state.set('signIn', {
         signedIn: true,
+        processing: false,
       })
     case SIGNED_IN:
       return state.set('signIn', {
@@ -44,6 +45,7 @@ export default function reducer(state = new ReducerRecord(), action) {
       })
     case SIGNED_IN_WITH_ERROR:
       return state.set('signIn', {
+        signedIn: false,
         processing: false,
       })
     case SIGN_UP:
