@@ -32,7 +32,10 @@ const signIn = async ctx => {
     expire: session.expire
   }, process.env.JWT_SECRET || config.jwt.secret)
   ctx.cookies.set('token', token, { signed: true })
-  ctx.body = refreshToken
+  ctx.body = {
+    refreshToken,
+    expire: session.expire
+  }
 }
 
 export default {

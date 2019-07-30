@@ -1,5 +1,7 @@
 // flow
 export const SIGN_IN = 'USER:SIGN_IN'
+export const SIGNED_IN = 'USER:SIGNED_IN'
+export const SIGNED_IN_WITH_ERROR = 'USER:SIGNED_IN_WITH_ERROR'
 export const SIGN_UP = 'USER:SIGN_UP'
 export const SIGNED_UP = 'USER:SIGNED_UP'
 export const SIGNED_UP_ERROR = 'USER:SIGNED_UP_ERROR'
@@ -12,6 +14,8 @@ const actionFactory = type => payload => ({
 })
 
 export const signIn = actionFactory(SIGN_IN)
+export const signedIn = actionFactory(SIGNED_IN)
+export const signedInWithError = actionFactory(SIGNED_IN_WITH_ERROR)
 export const signUp = actionFactory(SIGN_UP)
 export const signedUp = actionFactory(SIGNED_UP)
 export const signedUpWithError = actionFactory(SIGNED_UP_ERROR)

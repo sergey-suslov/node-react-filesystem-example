@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Row, Col, Typography, Form, Spin } from 'antd'
-import LinkButton from './../../../widgets/buttons/link-button'
+import LinkButton from '../../../widgets/buttons/link-button'
 import DefaultInput from '../../../widgets/inputs/default-input'
 import PasswordInput from '../../../widgets/inputs/password-input'
 import DefaultButton from '../../../widgets/buttons/default-button'
-import './sign-up-form.less'
+import './sign-in-form.less'
 
 class SignUpForm extends Component {
   state = {}
@@ -14,7 +14,7 @@ class SignUpForm extends Component {
     e.preventDefault()
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        this.props.signUp({
+        this.props.signIn({
           email: values.email,
           password: values.password
         })
@@ -22,18 +22,9 @@ class SignUpForm extends Component {
     })
   }
 
-  compareToFirstPassword = (rule, value, callback) => {
-    const { form } = this.props;
-    if (value && value !== form.getFieldValue('password')) {
-      callback('Two passwords that you enter is inconsistent!');
-    } else {
-      callback();
-    }
-  };
-
   render() {
-    const { history, isSigningUp } = this.props
-    const { handleSubmit, compareToFirstPassword } = this
+    const { history, isSigningIn } = this.props
+    const { handleSubmit } = this
     const { getFieldDecorator } = this.props.form
     const goTo = path => () => {history.push(path)}
     return (
@@ -58,28 +49,20 @@ class SignUpForm extends Component {
             rules: [{ required: true, min: 4, message: 'Please input your password', whitespace: true }],
           })(<PasswordInput placeholder="Password" />)}
         </Form.Item>
-        <Form.Item>
-          {getFieldDecorator('confirmPassword', {
-            rules: [
-              { required: true, min: 4, message: 'Please confirm your password', whitespace: true },
-              { validator: compareToFirstPassword, message: 'Passwords must match' },
-            ],
-          })(<PasswordInput placeholder="Confirm Password" />)}
-        </Form.Item>
         <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
-          <Spin spinning={isSigningUp}>
+          <Spin spinning={isSigningIn}>
             <DefaultButton type="primary" htmlType="submit">
-              Sign Up
+              Sign In
             </DefaultButton>
           </Spin>
         </Form.Item>
         <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
           <LinkButton shape="circle" icon="google" style={{ fontSize: 24 }} />
           <br/>
-          <Typography.Text>Get an account?</Typography.Text>
+          <Typography.Text>Don't have an account?</Typography.Text>
           &#160;
-          <LinkButton className="primary-color" onClick={goTo('/sign-in')}>
-            Sign in
+          <LinkButton className="primary-color" onClick={goTo('/sign-up')}>
+            Sign up
           </LinkButton>
         </Form.Item>
       </Form>

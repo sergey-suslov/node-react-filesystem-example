@@ -1,3 +1,6 @@
 export default {
-  baseAPIURL: '/'
+  baseAPIURL: '/',
+  defaultTime: {
+    maxRefreshTokenDelay: 1000 * 60 * 5
+  }
 }
