@@ -110,7 +110,6 @@ function* refreshToken() {
     localStorage.setItem('expire', expire)
     localStorage.setItem('refreshToken', refreshToken)
     localStorage.setItem('refreshedAt', new Date().toISOString())
-    message.success('Token refreshed')
     yield put(setUserSignedIn())
   } catch(error) {
     if (error.response) {
