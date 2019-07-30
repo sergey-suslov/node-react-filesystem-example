@@ -3,7 +3,6 @@ import { Route, Redirect } from 'react-router-dom'
 
 
 export default ({ component: Component, ...rest }) => {
-  console.log('shit', rest)
   return (
     <Route
       {...rest}

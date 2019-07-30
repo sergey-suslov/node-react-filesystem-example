@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import { isSignedIn } from '../../../reducers/user-reducer'
+import { setUserSignedIn, refreshToken } from '../../../actions/user-actions'
 import RefreshTokenService from './refresh-token-service'
 
 const mapStateToProps = state => ({
@@ -11,6 +12,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators(
   {
+    setUserSignedIn,
+    refreshToken
   },
   dispatch,
 )

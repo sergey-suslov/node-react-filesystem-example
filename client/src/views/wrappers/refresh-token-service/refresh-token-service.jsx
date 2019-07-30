@@ -14,26 +14,28 @@ export default class RefreshTokenService extends Component {
   }
 
   componentDidMount() {
+    const { setUserSignedIn } = this.props
     const lastRefreshed = localStorage.getItem('refreshedAt')
     if (!lastRefreshed)
       return this.refreshToken()
     const refreshedAtDate = new Date(lastRefreshed)
-    if (Date.now() - refreshedAtDate.getTime > config.defaultTime.maxRefreshTokenDelay)
+    if (Date.now() - refreshedAtDate.getTime() > config.defaultTime.maxRefreshTokenDelay)
       return this.refreshToken()
+    setUserSignedIn()
     this.setState({
       refreshed: true,
     })
   }
 
   refreshToken() {
-    console.log('Refresh!')
+    this.props.refreshToken()
   }
 
   render() {
-    const { children } = this.props
+    const { children, isSignedIn } = this.props
     const { refreshed } = this.state
     return (
-      refreshed ? children : <Spin spinning size="large" />
+      refreshed || isSignedIn ? children : <Spin spinning size="large" />
     )
   }
 }

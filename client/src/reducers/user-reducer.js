@@ -1,6 +1,14 @@
 import { createSelector } from 'reselect'
 import { Record } from 'immutable'
-import { SIGN_IN, SIGNED_IN, SIGN_UP, SIGNED_UP, SIGNED_UP_ERROR, SIGNED_IN_WITH_ERROR } from '../actions/user-actions'
+import {
+  SIGN_IN,
+  SIGNED_IN,
+  SIGN_UP,
+  SIGNED_UP,
+  SIGNED_UP_ERROR,
+  SIGNED_IN_WITH_ERROR,
+  SET_USER_SIGNED_IN,
+} from '../actions/user-actions'
 
 export const moduleName = 'user'
 
@@ -24,6 +32,10 @@ export default function reducer(state = new ReducerRecord(), action) {
       return state.set('signIn', {
         signedIn: false,
         processing: true,
+      })
+    case SET_USER_SIGNED_IN:
+      return state.set('signIn', {
+        signedIn: true,
       })
     case SIGNED_IN:
       return state.set('signIn', {

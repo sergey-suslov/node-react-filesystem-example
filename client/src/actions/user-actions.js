@@ -7,6 +7,8 @@ export const SIGNED_UP = 'USER:SIGNED_UP'
 export const SIGNED_UP_ERROR = 'USER:SIGNED_UP_ERROR'
 export const SIGN_UP_CONFIRM = 'USER:SIGN_UP_CONFIRM'
 export const SIGN_UP_CONFIRMED = 'USER:SIGN_UP_CONFIRMED'
+export const SET_USER_SIGNED_IN = 'USER:SET_USER_SIGNED_IN'
+export const REFRESH_TOKEN = 'USER:REFRESH_TOKEN'
 
 const actionFactory = type => payload => ({
   type,
@@ -21,3 +23,5 @@ export const signedUp = actionFactory(SIGNED_UP)
 export const signedUpWithError = actionFactory(SIGNED_UP_ERROR)
 export const signUpConfirm = actionFactory(SIGN_UP_CONFIRM)
 export const signUpConfirmed = actionFactory(SIGN_UP_CONFIRMED)
+export const setUserSignedIn = actionFactory(SET_USER_SIGNED_IN)
+export const refreshToken = actionFactory(REFRESH_TOKEN)
