@@ -22,7 +22,7 @@ const validateRefresh = async(ctx, next) => {
 
   const isRefreshExpired = await ctx.db.model('Session').isRefreshExpired(decoded.sid, _id)
   if (isRefreshExpired) {
-    return ctx.throw(Boom.unauthorized('Refresh token expired'))
+    return ctx.throw(Boom.unauthorized('Sorry, but last session lifetime is over. Please sign in.'))
   }
   await next()
 }

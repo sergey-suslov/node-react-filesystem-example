@@ -35,7 +35,7 @@ export default class RefreshTokenService extends Component {
     const { children, isSignedIn } = this.props
     const { refreshed } = this.state
     return (
-      refreshed || isSignedIn ? children : <Spin spinning size="large" />
+      refreshed || isSignedIn ? children : <Spin spinning size="large" className="spin-absolute-center" />
     )
   }
 }

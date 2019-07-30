@@ -30,8 +30,7 @@ schema.statics.isRefreshExpired = async function(incomeSid, userId) {
     userId,
     sid: incomeSid
   })
-  console.log('new Date(session.refreshExpire)', new Date(session.refreshExpire).getTime(), new Date().getTime())
-  if (new Date(session.refreshExpire).getTime() < new Date().getTime()) {
+  if (!session || new Date(session.refreshExpire).getTime() < new Date().getTime()) {
     return true
   }
   return false

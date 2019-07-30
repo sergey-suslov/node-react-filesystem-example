@@ -119,6 +119,9 @@ function* refreshToken() {
       } = error.response.data
       message.error(message)
       yield put(signedInWithError())
+      console.log('error', error.response);
+      if (error.response.status === 401)
+        yield put(push('/sign-in'))
     } else if (error.request) {
       yield put(push('/500'))
     } else {
