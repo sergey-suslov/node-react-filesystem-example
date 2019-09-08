@@ -1,0 +1,38 @@
+.files-container {
+  overflow: auto;
+  // padding: 0 16px;
+  // background-color: white;
+  // border-radius: 8px;
+  // box-shadow: #F5BDB6 #faad14 #F38C7F;
+}
+
+.file-list-item-meta {
+  position: relative;
+  &::before {
+    position: absolute;
+    color: @primary-color;
+    top: 23px;
+    left: -14px;
+    font-size: 6px;
+    opacity: 0;
+    content: '●';
+    transition: opacity .2s;
+  }
+}
+
+.file-list-item-meta:hover {
+  cursor: pointer;
+  .ant-list-item-meta-title {
+    color: @primary-color;
+    transition: all .2s;
+  }
+  &::before {
+    position: absolute;
+    top: 23px;
+    left: -14px;
+    opacity: 1;
+    font-size: 6px;
+    content: '●';
+    color: @primary-color;
+  }
+}
