@@ -58,7 +58,7 @@ export default class PublicAppbar extends Component {
                   </Col>
                   <Col md={3} lg={2}>
                     <DefaultButton onClick={goTo('/sign-up')}>
-                      Sign in
+                      Sign Up
                     </DefaultButton>
                   </Col>
                 </Row>

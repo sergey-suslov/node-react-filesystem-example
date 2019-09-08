@@ -1,7 +1,8 @@
-import { watchSignIn, watchSignUp, watchSignUpConfirm } from './user-saga'
+import { watchSignIn, watchSignUp, watchSignUpConfirm, watchRefreshToken } from './user-saga'
 
 export default [
   watchSignIn(),
   watchSignUp(),
-  watchSignUpConfirm()
+  watchSignUpConfirm(),
+  watchRefreshToken()
 ]

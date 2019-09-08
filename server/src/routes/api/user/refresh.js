@@ -22,7 +22,7 @@ const validateRefresh = async(ctx, next) => {
 
   const isRefreshExpired = await ctx.db.model('Session').isRefreshExpired(decoded.sid, _id)
   if (isRefreshExpired) {
-    return ctx.throw(Boom.unauthorized('Refresh token expired'))
+    return ctx.throw(Boom.unauthorized('Sorry, but last session lifetime is over. Please sign in.'))
   }
   await next()
 }
@@ -43,7 +43,10 @@ const refresh = async ctx => {
     expire: session.expire
   }, process.env.JWT_SECRET || config.jwt.secret)
   ctx.cookies.set('token', token, { signed: true })
-  ctx.body = refreshToken
+  ctx.body = {
+    refreshToken,
+    expire: session.expire
+  }
 }
 
 export default {

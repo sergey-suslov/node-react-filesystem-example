@@ -2,11 +2,17 @@ import { message } from 'antd'
 import { push } from 'react-router-redux'
 import { takeLatest, call, put } from 'redux-saga/effects'
 import axios from './axios'
-import { SIGN_IN,
+import {
+  SIGN_IN,
+  SIGNED_IN,
   SIGN_UP,
+  SIGN_UP_CONFIRM,
+  REFRESH_TOKEN,
   signedUp,
   signedUpWithError,
-  SIGN_UP_CONFIRM
+  signedInWithError,
+  signedIn,
+  setUserSignedIn
  } from '../actions/user-actions'
 
 function* signUp({ payload: {email, password} }) {
@@ -61,12 +67,78 @@ function* signUpConfirm({ payload: {hash} }) {
   }
 }
 
-function signIn({ payload }) {
-  // TODO: implement signin
+function* signIn({ payload: { email, password } }) {
+  try {
+    const { data } = yield call(axios.post, '/public/signin/email', {
+      email, password
+    })
+    const {
+      expire,
+      refreshToken
+    } = data
+    localStorage.setItem('expire', expire)
+    localStorage.setItem('refreshToken', refreshToken)
+    localStorage.setItem('refreshedAt', new Date().toISOString())
+    message.success('Successfully signed in')
+    yield put(signedIn())
+    yield put(push('/app'))
+  } catch(error) {
+    if (error.response) {
+      const {
+        message
+      } = error.response.data
+      message.error(message)
+      yield put(signedInWithError())
+    } else if (error.request) {
+      yield put(push('/500'))
+    } else {
+      console.log('Error', error.message);
+    }
+  }
+}
+
+function* refreshToken() {
+  const token = localStorage.getItem('refreshToken')
+  try {
+    const { data } = yield call(axios.post, '/api/user/refresh', {
+      token
+    })
+    const {
+      expire,
+      refreshToken
+    } = data
+    localStorage.setItem('expire', expire)
+    localStorage.setItem('refreshToken', refreshToken)
+    localStorage.setItem('refreshedAt', new Date().toISOString())
+    yield put(setUserSignedIn())
+  } catch(error) {
+    if (error.response) {
+      const {
+        message
+      } = error.response.data
+      message.error(message)
+      yield put(signedInWithError())
+      console.log('error', error.response);
+      if (error.response.status === 401)
+        yield put(push('/sign-in'))
+    } else if (error.request) {
+      yield put(push('/500'))
+    } else {
+      console.log('Error', error.message);
+    }
+  }
+}
+
+function * redirect() {
+  yield put(push('/app')) 
 }
 
 export function * watchSignIn() {
   yield takeLatest(SIGN_IN, signIn)
+}
+
+export function * watchSignedIn() {
+  yield takeLatest(SIGNED_IN, put(push('/app')))
 }
 
 export function * watchSignUp() {
@@ -75,4 +147,8 @@ export function * watchSignUp() {
 
 export function * watchSignUpConfirm() {
   yield takeLatest(SIGN_UP_CONFIRM, signUpConfirm)
+}
+
+export function * watchRefreshToken() {
+  yield takeLatest(REFRESH_TOKEN, refreshToken)
 }

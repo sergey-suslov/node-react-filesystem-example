@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react'
 import { Route, Switch } from 'react-router-dom'
+import SignIn from '../sign-in'
 import SignUp from '../sign-up'
 import SignUpResult from '../sign-up-result'
 import ServerIsUnavailable from '../500'
@@ -13,6 +14,7 @@ export default () => (
     <Switch>
       <Route path="/500" render={ServerIsUnavailable} />
       <Route path="/sign-up" render={SignUp} />
+      <Route path="/sign-in" render={SignIn} />
       <Route path="/sign-up-result" render={SignUpResult} />
       <Route path="/sign-up-confirm/:hash" render={SignUpConfirm} />
       <Route render={Landing} />

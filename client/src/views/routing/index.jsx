@@ -5,7 +5,7 @@ import App from '../app'
 
 export default () => (
   <Switch>
-    <Route path="/" render={Public} />
     <Route path="/app" render={App} />
+    <Route path="/" render={Public} />
   </Switch>
 )
