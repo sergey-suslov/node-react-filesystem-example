@@ -7,13 +7,13 @@ import Profile from '../profile'
 import RefreshTokenService from '../wrappers/refresh-token-service'
 import UserProfileService from '../wrappers/user-profile-service'
 import PrivateRoute from '../routing/private-route'
-import PrivateAppbar from '../appbars/private-appbar'
+import UserAppbar from '../../views/appbars/user-appbar'
 
 export default () => (
   <RefreshTokenService>
     <UserProfileService>
       <DndProvider backend={HTML5Backend}>
-        <PrivateAppbar />
+        <UserAppbar />
         <PrivateRoute
           component={() => (
             <Switch>

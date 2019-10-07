@@ -1,7 +1,6 @@
-import React, { Component, Children } from 'react'
+import React, { Component } from 'react'
 import { Spin } from 'antd'
 
-import config from '../../../config'
 import './user-profile-service.less'
 
 export default class RefreshTokenService extends Component {

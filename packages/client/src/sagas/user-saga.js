@@ -28,8 +28,10 @@ function* signUp({ payload: { email, password } }) {
     yield put(push('/sign-up-result'))
   } catch (error) {
     if (error.response) {
-      const { message } = error.response.data
-      message.error(message)
+      const {
+        message: msg
+      } = error.response.data
+      message.error(msg)
       yield put(signedUpWithError({ error: message }))
       // The request was made and the server responded with a status code
       // that falls out of the range of 2xx
@@ -55,8 +57,10 @@ function* signUpConfirm({ payload: { hash } }) {
     yield put(push('/sign-in'))
   } catch (error) {
     if (error.response) {
-      const { message } = error.response.data
-      message.error(message)
+      const {
+        message: msg
+      } = error.response.data
+      message.error(msg)
       yield put(push('/sign-in'))
     } else if (error.request) {
       yield put(push('/500'))
@@ -81,8 +85,10 @@ function* signIn({ payload: { email, password } }) {
     yield put(push('/app'))
   } catch (error) {
     if (error.response) {
-      const { message } = error.response.data
-      message.error(message)
+      const {
+        message: msg
+      } = error.response.data
+      message.error(msg)
       yield put(signedInWithError())
     } else if (error.request) {
       yield put(push('/500'))
@@ -106,8 +112,10 @@ function* refreshToken() {
   } catch (error) {
     console.log('error', error)
     if (error.response) {
-      // const { message: msg } = error.response.data
-      // message.error(msg)
+      const {
+        message: msg
+      } = error.response.data
+      message.error(msg)
       yield put(signedInWithError())
       console.log('error', error.response)
       if (error.response.status === 401) yield put(push('/sign-in'))

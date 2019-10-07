@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { Row, Col, Typography, Icon } from 'antd'
+import { Row, Col, Typography } from 'antd'
 import TweenOne from 'rc-tween-one'
-import LinkButton from './../../widgets/buttons/link-button'
 import SignUpForm from './sign-up-form'
 import './sign-up.less'
 
@@ -17,13 +15,13 @@ export default class SignUp extends Component {
                 {
                   y: -20,
                   opacity: 0,
-                  duration: 0,
+                  duration: 0
                 },
                 {
                   y: 0,
                   opacity: 1,
-                  duration: 550,
-                },
+                  duration: 550
+                }
               ]}
               component={() => (
                 <Typography.Title className="sign-up-title" level={1}>
@@ -40,13 +38,13 @@ export default class SignUp extends Component {
                 {
                   y: 44,
                   opacity: 0,
-                  duration: 0,
+                  duration: 0
                 },
                 {
                   y: 0,
                   opacity: 1,
-                  duration: 550,
-                },
+                  duration: 550
+                }
               ]}
               component={SignUpForm}
             />

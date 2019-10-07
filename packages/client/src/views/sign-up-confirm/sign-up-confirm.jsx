@@ -9,7 +9,6 @@ export default class SignUpConfirm extends Component {
   }
 
   render() {
-    const { match } = this.props
     return (
       <Spin size="large" tip="Confirming..." spinning>
         <div className="sing-up-confirm-container" />

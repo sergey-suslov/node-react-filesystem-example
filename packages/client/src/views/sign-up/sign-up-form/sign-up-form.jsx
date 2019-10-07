@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { Row, Col, Typography, Form, Spin } from 'antd'
+import { Typography, Form, Spin } from 'antd'
 import LinkButton from './../../../widgets/buttons/link-button'
 import DefaultInput from '../../../widgets/inputs/default-input'
 import PasswordInput from '../../../widgets/inputs/password-input'
@@ -23,11 +22,11 @@ class SignUpForm extends Component {
   }
 
   compareToFirstPassword = (rule, value, callback) => {
-    const { form } = this.props;
+    const { form } = this.props
     if (value && value !== form.getFieldValue('password')) {
-      callback('Two passwords that you enter is inconsistent!');
+      callback('Two passwords that you enter is inconsistent!')
     } else {
-      callback();
+      callback()
     }
   };
 
@@ -44,26 +43,26 @@ class SignUpForm extends Component {
               {
                 required: true,
                 message: 'Please input your email',
-                whitespace: true,
+                whitespace: true
               },
               {
                 message: 'Enter valid email',
-                type: 'email',
-              },
-            ],
+                type: 'email'
+              }
+            ]
           })(<DefaultInput placeholder="Email" />)}
         </Form.Item>
         <Form.Item>
           {getFieldDecorator('password', {
-            rules: [{ required: true, min: 4, message: 'Please input your password', whitespace: true }],
+            rules: [{ required: true, min: 4, message: 'Please input your password', whitespace: true }]
           })(<PasswordInput placeholder="Password" />)}
         </Form.Item>
         <Form.Item>
           {getFieldDecorator('confirmPassword', {
             rules: [
               { required: true, min: 4, message: 'Please confirm your password', whitespace: true },
-              { validator: compareToFirstPassword, message: 'Passwords must match' },
-            ],
+              { validator: compareToFirstPassword, message: 'Passwords must match' }
+            ]
           })(<PasswordInput placeholder="Confirm Password" />)}
         </Form.Item>
         <Form.Item wrapperCol={{ span: 12, offset: 6 }}>

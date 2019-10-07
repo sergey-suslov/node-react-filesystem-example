@@ -15,13 +15,13 @@ export default class SignUp extends Component {
                 {
                   y: -20,
                   opacity: 0,
-                  duration: 0,
+                  duration: 0
                 },
                 {
                   y: 0,
                   opacity: 1,
-                  duration: 550,
-                },
+                  duration: 550
+                }
               ]}
               component={() => (
                 <Typography.Title className="sign-in-title" level={1}>
@@ -38,13 +38,13 @@ export default class SignUp extends Component {
                 {
                   y: 44,
                   opacity: 0,
-                  duration: 0,
+                  duration: 0
                 },
                 {
                   y: 0,
                   opacity: 1,
-                  duration: 550,
-                },
+                  duration: 550
+                }
               ]}
               component={SignUpForm}
             />

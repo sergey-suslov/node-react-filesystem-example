@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
-import { Row, Col, Typography, Spin } from 'antd'
-import PropTypes from 'prop-types'
+import React from 'react'
+import { Typography, Spin } from 'antd'
 import { useDrop } from 'react-dnd'
 
 import BackButton from '../../../widgets/buttons/back-button'

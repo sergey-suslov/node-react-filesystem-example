@@ -1,4 +1,4 @@
-import React, { Component, Children } from 'react'
+import React, { Component } from 'react'
 import { Spin } from 'antd'
 
 import config from '../../../config'
@@ -23,7 +23,7 @@ export default class RefreshTokenService extends Component {
       return this.refreshToken()
     setUserSignedIn()
     this.setState({
-      refreshed: true,
+      refreshed: true
     })
   }
 
