@@ -19,7 +19,7 @@ function CreateForm(props) {
       <br />
       <div style={{ textAlign: 'center' }}>
         <Button disabled={name === ''} type='link' shape='circle' icon='folder-add' size="large" onClick={add('directory')} />
-        <Button disabled={name === ''} type='link' shape='circle' icon='user-add' size="large" onClick={add('profile')} />
+        <Button disabled type='link' shape='circle' icon='user-add' size="large" onClick={add('profile')} />
       </div>
     </Fragment>
   )
